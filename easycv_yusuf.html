@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EasyCV — Yusuf Ali Yusuf — Professional CV Builder</title>
+<style>
+:root{--accent:#2563eb;--dark:#172033;--bg:#f3f5f8}*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#172033}header{background:var(--dark);color:#fff;padding:16px 22px;font-weight:800;font-size:24px;display:flex;justify-content:space-between;align-items:center}header b{color:#60a5fa}.topbtn{background:#fff;color:var(--dark);border:0;padding:9px 13px;border-radius:8px;font-weight:700;cursor:pointer}.layout{max-width:1400px;margin:auto;padding:20px;display:grid;grid-template-columns:390px 1fr;gap:20px}.panel,.preview{background:#fff;border-radius:14px;box-shadow:0 5px 25px #00000012}.panel{padding:20px}.preview{padding:18px;min-height:900px}.steps{display:flex;gap:6px;margin-bottom:18px;overflow:auto}.step{white-space:nowrap;border:1px solid #d8dee8;background:#fff;padding:8px 11px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:700}.step.active{background:var(--dark);color:#fff}.page{display:none}.page.active{display:block}h2{margin:0 0 8px}h3{font-size:14px;margin:20px 0 8px;border-bottom:1px solid #e1e5eb;padding-bottom:6px}label{display:block;font-size:12px;font-weight:700;margin:9px 0 4px}input,textarea,select{width:100%;padding:10px;border:1px solid #d5dbe5;border-radius:8px;font:inherit}textarea{min-height:75px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.actions{display:flex;gap:8px;margin-top:16px}.btn{border:0;border-radius:8px;padding:10px 14px;font-weight:700;cursor:pointer}.primary{background:var(--dark);color:#fff}.light{background:#e9eef5;color:var(--dark)}.danger{background:#fee2e2;color:#991b1b}.entry{border:1px solid #e1e5eb;padding:10px;border-radius:9px;margin:9px 0}.entry .btn{font-size:11px}.hint{font-size:12px;color:#667085}.templates{display:grid;grid-template-columns:1fr 1fr;gap:8px}.template{border:2px solid #ddd;border-radius:9px;padding:10px;cursor:pointer}.template.selected{border-color:var(--accent)}.template .mini{height:70px;background:#f4f5f7;border-radius:5px;padding:8px;font-size:8px}.colors{display:flex;gap:8px}.color{width:30px;height:30px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px #ccc;cursor:pointer}.photo-preview{width:85px;height:85px;border-radius:50%;object-fit:cover;border:2px solid #ddd;display:none;margin-top:8px}.cv{background:#fff;min-height:860px;padding:48px;box-shadow:0 2px 12px #0000000d}.cv.modern .head{display:flex;justify-content:space-between;gap:20px}.head{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:20px}.name{font-size:34px;font-weight:800}.title{font-size:17px;color:#596273;margin-top:5px}.contact{font-size:12px;color:#596273;line-height:1.8}.avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;display:none}.sec{margin:20px 0}.sec h4{color:var(--accent);font-size:14px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #ddd;padding-bottom:5px;margin-bottom:10px}.item{margin:12px 0}.item strong{font-size:14px}.muted{font-size:12px;color:#667085}.item p{font-size:13px;line-height:1.5;margin:5px 0}.skills{display:flex;flex-wrap:wrap;gap:7px}.skill{background:#edf2f7;padding:6px 9px;border-radius:15px;font-size:11px}.cv.classic .head{text-align:center}.cv.classic .contact{text-align:center}.cv.minimal .head{border-bottom:1px solid #222}.cv.minimal .sec h4{color:#222}.success{background:#ecfdf5;color:#065f46;padding:9px;border-radius:8px;font-size:12px;margin-top:10px;display:none}@media(max-width:900px){.layout{grid-template-columns:1fr}.cv{padding:28px}.name{font-size:27px}}@media print{header,.panel{display:none!important}.layout{display:block;padding:0}.preview{box-shadow:none;padding:0}.cv{box-shadow:none;min-height:0}}
+</style>
+</head>
+<body>
+<header><div>Easy<b>CV</b></div><button class="topbtn" onclick="window.print()">📄 Download PDF</button></header>
+<div class="layout">
+<section class="panel">
+<div class="steps">
+<button class="step active" onclick="go(0)">1 Personal</button>
+<button class="step" onclick="go(1)">2 Education</button>
+<button class="step" onclick="go(2)">3 Experience</button>
+<button class="step" onclick="go(3)">4 Skills</button>
+<button class="step" onclick="go(4)">5 Design</button>
+</div>
+
+<div class="page active">
+<h2>Personal</h2><p class="hint">Start with your basic information.</p>
+<label>Full name</label><input id="name" placeholder="Yusuf Ali Yusuf">
+<label>Professional title</label><input id="title" placeholder="Computer Science Student">
+<div class="row"><div><label>Email</label><input id="email" placeholder="you@email.com"></div><div><label>Phone</label><input id="phone" placeholder="+252 ..."></div></div>
+<label>Location</label><input id="location" placeholder="Mogadishu, Somalia">
+<label>Profile / About me</label><textarea id="profile" placeholder="Write 2–4 sentences about yourself."></textarea>
+<label>Profile photo (optional)</label><input id="photo" type="file" accept="image/*"><img id="photoPreview" class="photo-preview">
+<div class="actions"><button class="btn primary" onclick="go(1)">Next →</button></div>
+</div>
+
+<div class="page">
+<h2>Education</h2><p class="hint">Add school, college or university information.</p><div id="education"></div>
+<button class="btn light" onclick="addEducation()">+ Add education</button>
+<div class="actions"><button class="btn light" onclick="go(0)">← Back</button><button class="btn primary" onclick="go(2)">Next →</button></div>
+</div>
+
+<div class="page">
+<h2>Experience</h2><p class="hint">Jobs, internships, volunteering or projects can be included.</p><div id="experience"></div>
+<button class="btn light" onclick="addExperience()">+ Add experience</button>
+<div class="actions"><button class="btn light" onclick="go(1)">← Back</button><button class="btn primary" onclick="go(3)">Next →</button></div>
+</div>
+
+<div class="page">
+<h2>Skills & Languages</h2>
+<label>Skills</label><input id="skills" placeholder="HTML, CSS, JavaScript, Communication">
+<label>Languages</label><input id="languages" placeholder="Somali, English">
+<label>Optional website / LinkedIn</label><input id="website" placeholder="https://...">
+<div class="actions"><button class="btn light" onclick="go(2)">← Back</button><button class="btn primary" onclick="go(4)">Next →</button></div>
+</div>
+
+<div class="page">
+<h2>Design</h2>
+<label>Choose template</label>
+<div class="templates">
+<div class="template selected" onclick="setTemplate('modern',this)"><b>Modern</b><div class="mini">NAME<br><hr>Profile<br>Experience<br>Skills</div></div>
+<div class="template" onclick="setTemplate('classic',this)"><b>Classic</b><div class="mini" style="text-align:center">NAME<br><hr>Education<br>Experience</div></div>
+<div class="template" onclick="setTemplate('minimal',this)"><b>Minimal</b><div class="mini">NAME<br>Profile<br>Skills<br>Education</div></div>
+</div>
+<label>Accent color</label><div class="colors">
+<div class="color" style="background:#2563eb" onclick="setColor('#2563eb')"></div><div class="color" style="background:#059669" onclick="setColor('#059669')"></div><div class="color" style="background:#7c3aed" onclick="setColor('#7c3aed')"></div><div class="color" style="background:#dc2626" onclick="setColor('#dc2626')"></div><div class="color" style="background:#172033" onclick="setColor('#172033')"></div>
+</div>
+<div class="actions"><button class="btn light" onclick="go(3)">← Back</button><button class="btn primary" onclick="window.print()">📄 Download / Save PDF</button></div>
+<div id="saved" class="success">Your CV is ready. Use “Save as PDF” in the print window.</div>
+</div>
+</section>
+
+<section class="preview"><div id="cv" class="cv modern">
+<div class="head"><div><div class="name" id="oName">Your Name</div><div class="title" id="oTitle">Professional Title</div><div class="contact" id="oContact">Email • Phone • Location</div></div><img id="avatar" class="avatar"></div>
+<div class="sec" id="sProfile"><h4>Profile</h4><p id="oProfile"></p></div>
+<div class="sec" id="sEdu"><h4>Education</h4><div id="oEdu"></div></div>
+<div class="sec" id="sExp"><h4>Experience</h4><div id="oExp"></div></div>
+<div class="sec" id="sSkills"><h4>Skills</h4><div class="skills" id="oSkills"></div></div>
+<div class="sec" id="sLang"><h4>Languages</h4><p id="oLang"></p></div>
+<div class="sec" id="sWeb"><h4>Website / LinkedIn</h4><p id="oWeb"></p></div>
+</div></section>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+let page=0;
+function go(n){page=n;document.querySelectorAll('.page').forEach((x,i)=>x.classList.toggle('active',i===n));document.querySelectorAll('.step').forEach((x,i)=>x.classList.toggle('active',i===n));}
+function addEducation(d={}){let x=document.createElement('div');x.className='entry';x.innerHTML=`<label>Institution</label><input class="es" value="${d.s||''}" placeholder="School / University"><label>Qualification</label><input class="ed" value="${d.d||''}" placeholder="Degree / Certificate"><label>Dates</label><input class="et" value="${d.t||''}" placeholder="2022–2026"><button class="btn danger" onclick="this.parentElement.remove();update()">Remove</button>`;$('education').appendChild(x);x.querySelectorAll('input').forEach(i=>i.oninput=update);update()}
+function addExperience(d={}){let x=document.createElement('div');x.className='entry';x.innerHTML=`<label>Role</label><input class="xr" value="${d.r||''}" placeholder="Job / Role"><label>Company</label><input class="xc" value="${d.c||''}" placeholder="Company / Organization"><label>Dates</label><input class="xt" value="${d.t||''}" placeholder="2025–2026"><label>Description</label><textarea class="xd" placeholder="What did you do?">${d.d||''}</textarea><button class="btn danger" onclick="this.parentElement.remove();update()">Remove</button>`;$('experience').appendChild(x);x.querySelectorAll('input,textarea').forEach(i=>i.oninput=update);update()}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function update(){
+$('oName').textContent=$('name').value||'Your Name';$('oTitle').textContent=$('title').value||'Professional Title';$('oContact').textContent=[$('email').value,$('phone').value,$('location').value].filter(Boolean).join(' • ')||'Email • Phone • Location';
+$('oProfile').textContent=$('profile').value;$('sProfile').style.display=$('profile').value?'block':'none';
+let e=[...document.querySelectorAll('#education .entry')].map(x=>({s:x.querySelector('.es').value,d:x.querySelector('.ed').value,t:x.querySelector('.et').value})).filter(x=>x.s||x.d||x.t);$('oEdu').innerHTML=e.map(x=>`<div class="item"><strong>${esc(x.d)}</strong><div class="muted">${esc(x.s)} ${x.t?'• '+esc(x.t):''}</div></div>`).join('');$('sEdu').style.display=e.length?'block':'none';
+let r=[...document.querySelectorAll('#experience .entry')].map(x=>({r:x.querySelector('.xr').value,c:x.querySelector('.xc').value,t:x.querySelector('.xt').value,d:x.querySelector('.xd').value})).filter(x=>x.r||x.c||x.t||x.d);$('oExp').innerHTML=r.map(x=>`<div class="item"><strong>${esc(x.r)}</strong><div class="muted">${esc(x.c)} ${x.t?'• '+esc(x.t):''}</div><p>${esc(x.d)}</p></div>`).join('');$('sExp').style.display=r.length?'block':'none';
+let s=$('skills').value.split(',').map(x=>x.trim()).filter(Boolean);$('oSkills').innerHTML=s.map(x=>`<span class="skill">${esc(x)}</span>`).join('');$('sSkills').style.display=s.length?'block':'none';
+let l=$('languages').value.split(',').map(x=>x.trim()).filter(Boolean);$('oLang').textContent=l.join(' • ');$('sLang').style.display=l.length?'block':'none';
+$('oWeb').textContent=$('website').value;$('sWeb').style.display=$('website').value?'block':'none';
+}
+function setTemplate(t,el){$('cv').className='cv '+t;document.querySelectorAll('.template').forEach(x=>x.classList.remove('selected'));el.classList.add('selected')}
+function setColor(c){document.documentElement.style.setProperty('--accent',c)}
+$('photo').onchange=e=>{let f=e.target.files[0];if(f){let u=URL.createObjectURL(f);$('photoPreview').src=u;$('photoPreview').style.display='block';$('avatar').src=u;$('avatar').style.display='block'}};
+document.querySelectorAll('input,textarea').forEach(x=>x.addEventListener('input',update));
+addEducation();addExperience();update();
+</script>
+</body>
+</html>
